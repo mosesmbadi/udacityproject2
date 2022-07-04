@@ -3,7 +3,7 @@ Description: >
 
 Parameters:
   EnvironmentName:
-    Description: Environment name that will be prefixed to resource names
+    Description: udacityproject2
     Type: String
 
   VpcCIDR: 

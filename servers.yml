@@ -3,7 +3,7 @@ Description: >
 
 Parameters:
   EnvironmentName:
-    Description: Environment name that will be prefixed to resource names
+    Description: udacityproject2
     Type: String
 
 Resources:
@@ -18,6 +18,9 @@ Resources:
       - IpProtocol: tcp
         FromPort: 80
         ToPort: 80
+        CidrIp: 0.0.0.0/0
+        FromPort: 22
+        ToPort: 22
         CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
       - IpProtocol: tcp
@@ -75,14 +78,12 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           apt-get update -y
-          apt-get install awscli -y
           apt-get install apache2 -y
-          apt-get install unzip -y
-          cd /var/www/html
-          aws s3 cp s3://udacity-nd9991-project2/nd9991-project2.zip .
-          unzip -o nd9991-project2.zip
           systemctl start apache2.service
-      ImageId: ami-09ca8a080b6699260
+          cd /var/www/html
+          mv index.html default.html
+          echo "It works! Udagram, Udacity" > index.html
+      ImageId: ami-052efd3df9dad4825
       IamInstanceProfile: !Ref S3GetInstanceProfile
       SecurityGroups:
       - !Ref WebServerSecurityGroup
