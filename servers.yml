@@ -10,7 +10,7 @@ Resources:
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Web Servers Security Group
+      GroupDescription: Allow http to our hosts and SSH from local 
       VpcId:
         Fn::ImportValue:
           !Sub ${EnvironmentName}-VPCID
@@ -19,6 +19,7 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
         FromPort: 22
         ToPort: 22
         CidrIp: 0.0.0.0/0
@@ -30,7 +31,7 @@ Resources:
   LBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Load Balancer Security Group
+      GroupDescription: Allow http to our load balancer
       VpcId:
         Fn::ImportValue:
           !Sub ${EnvironmentName}-VPCID
@@ -43,6 +44,10 @@ Resources:
       - IpProtocol: tcp
         FromPort: 80
         ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp 
+        FromPort: 8080
+        ToPort: 8080
         CidrIp: 0.0.0.0/0
   S3GetIAMRole:
     Type: 'AWS::IAM::Role'

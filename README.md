@@ -10,7 +10,7 @@ To deploy code run de following commands:
 ```
 
 Load Balancer Link:
-http://serve-webse-1g5w94qhc0evq-32080927.us-east-1.elb.amazonaws.com/
+http://serve-webse-12qie1sxb9lpo-973699926.us-east-1.elb.amazonaws.com/
 
 Here's a Screenshot of the deployed script
-![Alt text](/udacityproj2.png?raw=true "Title")
+![Alt text](/screen1.png?raw=true "Title")
